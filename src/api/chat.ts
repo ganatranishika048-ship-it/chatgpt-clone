@@ -1,6 +1,6 @@
 const BASE = "http://localhost:3000";
 
-const getGeminiResponse = async(prompt: string) => {
+const getChatResponse = async(prompt: string) => {
 
     const response = await fetch(`${BASE}/chat`, {
         method: "POST",
@@ -10,7 +10,11 @@ const getGeminiResponse = async(prompt: string) => {
         body: JSON.stringify({ prompt })
     });
 
-    return response.json();
+    const content = await response.json();
+    console.log("response", content);
+    console.log("content", content.response);
+
+    return content.response;
 }
 
-export { getGeminiResponse };
+export { getChatResponse };
